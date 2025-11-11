@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/../core/db.php'; header('Content-Type: application/json'); $db=nxi_db(); $r=$db->query("SELECT id,title,views,clicks,ROUND(IFNULL(clicks/NULLIF(views,0),0)*100,2) ctr FROM ads ORDER BY ctr DESC LIMIT 50"); $out=[]; while($row=$r->fetch_assoc()){ $out[]=$row; } echo json_encode($out);

@@ -1,0 +1,1 @@
+<?php header('Content-Type: application/json; charset=UTF-8'); require_once __DIR__.'/../core/ads.php'; $slot=$_GET['slot']??'auto'; $pub=$_GET['pub']??''; $ad=nxi_get_random_ad('all','responsive','',$pub); echo json_encode($ad?:{"id":0 ,"html"=>'']);

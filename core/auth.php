@@ -1,0 +1,4 @@
+<?php
+require_once __DIR__.'/db.php'; require_once __DIR__.'/helper.php';
+function nxi_login($email,$pass){$db=nxi_db(); $email=$db->real_escape_string($email); $q=$db->query("SELECT * FROM users WHERE email='$email' LIMIT 1"); $u=$q?$q->fetch_assoc():null; if($u && password_verify($pass,$u['password'])){ nxi_session(); $_SESSION['user']=['id'=>$u['id'],'role'=>$u['role'],'name'=>$u['name'],'pub_id'=>$u['pub_id']]; return true;} return false;}
+function nxi_register($name,$email,$pass,$role='publisher'){ $db=nxi_db(); $name=$db->real_escape_string($name); $email=$db->real_escape_string($email); $hash=password_hash($pass,PASSWORD_BCRYPT); $pub_id='pub-'.substr(md5(uniqid('',true)),0,10); return $db->query("INSERT INTO users(name,email,password,role,pub_id) VALUES('$name','$email','$hash','$role','$pub_id')"); }

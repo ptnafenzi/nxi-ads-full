@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100),email VARCHAR(120) UNIQUE,password VARCHAR(255),role ENUM('admin','advertiser','publisher') DEFAULT 'publisher',pub_id VARCHAR(30),created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS ads (id INT AUTO_INCREMENT PRIMARY KEY,advertiser_id INT,type ENUM('image','html') DEFAULT 'html',title VARCHAR(255),html TEXT,image VARCHAR(255),click_url VARCHAR(255),views INT DEFAULT 0,clicks INT DEFAULT 0,status ENUM('active','paused') DEFAULT 'active');
